@@ -16,8 +16,8 @@ const Form = () => {
 
     const method = isEditing ? "PUT" : "POST";
     const url = isEditing
-      ? `https://op-back-end.onrender.com/items/${items[editIndex].id}`
-      : "https://op-back-end.onrender.com/items";
+      ? import.meta.env.VITE_API_URL + items[editIndex].id
+      : import.meta.env.VITE_API_URL;
 
     fetch(url, {
       method,
@@ -54,7 +54,7 @@ const Form = () => {
   const handleDelete = (index) => {
     const itemId = items[index].id;
 
-    fetch(`https://op-back-end.onrender.com/items/${itemId}`, {
+    fetch(import.meta.env.VITE_API_URL + itemId, {
       method: "DELETE",
     })
       .then((response) => response.json())
@@ -71,14 +71,7 @@ const Form = () => {
   };
 
   useEffect(() => {
-    const savedItems = JSON.parse(localStorage.getItem("items"));
-    if (savedItems) {
-      setItems(savedItems);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetch("https://op-back-end.onrender.com/items", {
+    fetch(import.meta.env.VITE_API_URL, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
