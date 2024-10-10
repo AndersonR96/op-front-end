@@ -16,8 +16,8 @@ const Form = () => {
 
     const method = isEditing ? "PUT" : "POST";
     const url = isEditing
-      ? `http://localhost:3001/items/${items[editIndex].id}`
-      : "http://localhost:3001/items";
+      ? `https://op-back-end.onrender.com/items/${items[editIndex].id}`
+      : "https://op-back-end.onrender.com/items";
 
     fetch(url, {
       method,
@@ -54,7 +54,7 @@ const Form = () => {
   const handleDelete = (index) => {
     const itemId = items[index].id;
 
-    fetch(`http://localhost:3001/items/${itemId}`, {
+    fetch(`https://op-back-end.onrender.com/items/${itemId}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
@@ -78,7 +78,7 @@ const Form = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3001/items", {
+    fetch("https://op-back-end.onrender.com/items", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
